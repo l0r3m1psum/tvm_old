@@ -26,7 +26,7 @@ def main():
     parser.add_argument("bitstream", type=str, default="", help="bitstream path")
     args = parser.parse_args()
 
-    if args.target not in ("pynq", "ultra96", "de10nano", "sim", "tsim"):
+    if args.target not in ("pynq", "ultra96", "zcu104", "de10nano", "sim", "tsim"):
         raise RuntimeError("Unknown target {}".format(args.target))
 
     curr_path = os.path.dirname(os.path.abspath(os.path.expanduser(__file__)))
@@ -68,7 +68,7 @@ def intelfocl_bitstream_program(bitstream_path, mem_size=4 * 1024 * 1024 * 1024)
 def bitstream_program(target, bitstream, *args):
     """program bitstream to devices"""
 
-    if target in ["pynq", "ultra96"]:
+    if target in ["pynq", "ultra96", "zcu104"]:
         pynq_bitstream_program(bitstream)
     elif target in ["de10nano"]:
         de10nano_bitstream_program(bitstream)

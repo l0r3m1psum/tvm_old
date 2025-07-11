@@ -18,5 +18,5 @@
 PROJROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/../../" && pwd )"
 
 export PYTHONPATH=${PYTHONPATH}:${PROJROOT}/python:${PROJROOT}/vta/python
-export PYTHONPATH=${PYTHONPATH}:/home/xilinx/pynq
+export PYTHONPATH=${PYTHONPATH}:/home/xilinx
 python3 -m vta.exec.rpc_server
