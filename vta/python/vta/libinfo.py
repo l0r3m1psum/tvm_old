@@ -69,7 +69,11 @@ def find_libvta(lib_vta, optional=False):
             "build",
         )
 
-    lib_search = [tvm_library_path, os.path.join(get_vta_hw_path(), "build")]
+    lib_search = [
+        tvm_library_path,
+        os.path.join(tvm_library_path, "RelWithDebInfo"),
+        os.path.join(get_vta_hw_path(), "build"),
+    ]
     lib_name = _get_lib_name(lib_vta)
     lib_path = [os.path.join(x, lib_name) for x in lib_search]
     lib_found = [x for x in lib_path if os.path.exists(x)]

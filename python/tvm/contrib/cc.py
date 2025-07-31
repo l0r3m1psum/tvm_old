@@ -387,6 +387,8 @@ def _windows_compile(output, objects, options, cwd=None, ccache_env=None):
         objects = [objects]
     cmd += ["-o", output]
     cmd += objects
+    # TODO: find a better solution!
+    # cmd += ["-l", r"C:\Users\EDT_EIL\Source\object_detection_compilation_new\submodules\tvm\build\RelWithDebInfo\vta_fsim"]
     if options:
         cmd += options
     env = None

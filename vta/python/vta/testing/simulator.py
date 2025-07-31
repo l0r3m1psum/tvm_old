@@ -22,18 +22,19 @@ import warnings
 import tvm
 from ..environment import get_env
 from ..libinfo import find_libvta
+import os
 
 
 def _load_sw():
     """Load hardware library for simulator."""
 
     env = get_env()
-    lib_driver_name = (
-        "libvta_tsim"
+    lib_driver_name = ("lib" if os.name != "nt" else "") + (
+        "vta_tsim"
         if env.TARGET == "tsim"
-        else "libvta"
+        else "vta"
         if env.TARGET == "intelfocl"
-        else "libvta_fsim"
+        else "vta_fsim"
     )
     require_sim = env.TARGET in ("sim", "tsim")
     libs = []

@@ -41,6 +41,11 @@
 #include <thread>
 #include <vector>
 
+#ifdef _MSC_VER
+  #define posix_memalign(p, a, s) (((*p)) = _aligned_malloc((s), (a)), *(p) ? 0 : errno)
+  #define free(p) _aligned_free((p))
+#endif
+
 namespace vta {
 
 // Avoid bad configurations.
