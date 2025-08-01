@@ -41,7 +41,9 @@
 #include <thread>
 #include <vector>
 
+// This should be a single translation unit, so it is fine to redefine this two.
 #ifdef _MSC_VER
+  // https://stackoverflow.com/a/33696858
   #define posix_memalign(p, a, s) (((*p)) = _aligned_malloc((s), (a)), *(p) ? 0 : errno)
   #define free(p) _aligned_free((p))
 #endif

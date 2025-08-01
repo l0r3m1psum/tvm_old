@@ -71,7 +71,11 @@ def find_libvta(lib_vta, optional=False):
 
     lib_search = [
         tvm_library_path,
+        # https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.htm
+        os.path.join(tvm_library_path, "Debug"),
+        os.path.join(tvm_library_path, "Release"),
         os.path.join(tvm_library_path, "RelWithDebInfo"),
+        os.path.join(tvm_library_path, "MinSizeRel"),
         os.path.join(get_vta_hw_path(), "build"),
     ]
     lib_name = _get_lib_name(lib_vta)
