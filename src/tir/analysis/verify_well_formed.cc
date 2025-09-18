@@ -245,6 +245,7 @@ class UndefinedVarVerifier : public Verifier<UndefinedVarVerifier> {
     bool redefine_is_allowed = redefine_allowed_within_function_.count(var);
     {
       auto it = currently_defined_.find(var);
+      if (!(it == currently_defined_.end() || redefine_is_allowed))
       Verify(it == currently_defined_.end() || redefine_is_allowed)
           << "ValueError: "
           << "TIR is ill-formed, "
@@ -254,6 +255,7 @@ class UndefinedVarVerifier : public Verifier<UndefinedVarVerifier> {
 
     {
       auto it = previously_defined_.find(var);
+      if (!(it == previously_defined_.end() || redefine_is_allowed))
       Verify(it == previously_defined_.end() || redefine_is_allowed)
           << "ValueError: "
           << "TIR is ill-formed, "
