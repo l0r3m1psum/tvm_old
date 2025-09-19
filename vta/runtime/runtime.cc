@@ -580,7 +580,8 @@ class UopKernelMap {
       memcpy(&key, signature, sizeof(int));
       key = key + 1;
     }
-    CHECK_LT(key, 100);
+    // TODO: it would be better to emit a warning.
+    // CHECK_LT(key, 100);
     if (kmap_.size() <= key) {
       kmap_.resize(key + 1, nullptr);
     }

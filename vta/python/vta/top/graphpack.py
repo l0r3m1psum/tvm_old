@@ -76,6 +76,7 @@ def _channel_const_match(channel_length, cfactor_out):
 
 def _const_shape_match(data, dshape, cfactor_out):
     """Pad the constant if the shape[0] not divisible by cfactor_out."""
+    breakpoint()
     assert len(dshape) == 3
     pad_width = int(dshape[0]) % cfactor_out
     if pad_width != 0:
@@ -160,7 +161,10 @@ def _pack_weight_conv2d_transpose(data, dshape, cfactor):
 
 def _pack_const(data, dshape, dtype, bfactor, cfactor):
     """Pack a constant parameter."""
+    # breakpoint()
     dshape = _to_shape(dshape)
+    if len(dshape) == 1:
+        dshape = (dshape[0], 1, 1)
     assert len(dshape) == 3
     assert dshape[0] % cfactor == 0
     data = op.reshape(data, newshape=(dshape[0] // cfactor, cfactor, dshape[1], dshape[2], 1))
